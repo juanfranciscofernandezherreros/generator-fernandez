@@ -1,0 +1,21 @@
+{
+    "links": {
+        "first": "/resources/search?page[size]=1&page[number]=1&sort=+attributeId",
+        "last": "/resources/search?page[size]=1&page[number]=1&sort=+attributeId"
+    },
+    "data": [
+        {
+            "attributes": {
+                "attribute": "value",
+                "attributeId": "1"
+            },
+            "id": "1",
+            "type": "resources"
+        }
+    ],
+    "meta": {
+        "totalPages": 1,
+        "page": 1,
+        "total": 1
+    }
+}

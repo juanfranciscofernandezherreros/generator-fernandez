@@ -1,0 +1,16 @@
+{
+    "filters": [
+        {
+            "attribute": "attributeId",
+            "values": [
+                "1"
+            ]
+        },
+        {
+            "attribute": "attribute",
+            "values": [
+                "value"
+            ]
+        }
+    ]
+}

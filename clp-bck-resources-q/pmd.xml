@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<ruleset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         name="Nazgul Tools PMD Rules"
+         xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
+         xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 https://pmd.sourceforge.io/ruleset_2_0_0.xsd">
+
+    <description>PMD rules</description>
+    <!--
+        Rule priority definitions:
+        1: Change absolutely required. Behavior is critically broken/buggy.
+        2: Change highly recommended. Behavior is quite likely to be broken/buggy.
+        3: Change recommended. Behavior is confusing, perhaps buggy, and/or against standards/best practices.
+        4: Change optional. Behavior is not likely to be buggy, but more just flies in the face of standards/style/good taste.
+        5: Change highly optional. Nice to have, such as a consistent naming policy for package/class/fields...
+    -->
+
+    <rule ref="category/java/bestpractices.xml">
+        <exclude name="JUnitTestsShouldIncludeAssert" />
+        <exclude name="JUnitTestContainsTooManyAsserts" />
+        <exclude name="GuardLogStatement" />
+        <exclude name="AccessorMethodGeneration" />
+        <exclude name="JUnit4TestShouldUseTestAnnotation" />
+        <exclude name="PreserveStackTrace" />
+        <exclude name="JUnitAssertionsShouldIncludeMessage" /> <!-- Cuando se revisen los TEST, eliminar esta exclusion -->
+    </rule>
+
+
+    <!--
+        Class design checks.
+    -->
+    <rule ref="category/java/errorprone.xml/CloseResource">
+        <priority>3</priority>
+    </rule>
+    <rule ref="category/java/errorprone.xml/ConstructorCallsOverridableMethod">
+        <priority>3</priority>
+    </rule>
+    <rule ref="category/java/errorprone.xml/EqualsNull">
+        <priority>2</priority>
+    </rule>
+    <rule ref="category/java/design.xml/FinalFieldCouldBeStatic">
+        <priority>2</priority>
+    </rule>
+    <rule ref="category/java/errorprone.xml/IdempotentOperations">
+        <priority>2</priority>
+    </rule>
+    <rule ref="category/java/errorprone.xml/InstantiationToGetClass">
+        <priority>3</priority>
+    </rule>
+    <rule ref="category/java/errorprone.xml/MissingStaticMethodInNonInstantiatableClass">
+        <priority>2</priority>
+    </rule>
+    <rule ref="category/java/bestpractices.xml/PreserveStackTrace">
+        <priority>3</priority>
+    </rule>
+    <rule ref="category/java/design.xml/SimplifyConditional">
+        <priority>3</priority>
+    </rule>
+    <rule ref="category/java/codestyle.xml/UnnecessaryLocalBeforeReturn">
+        <priority>3</priority>
+    </rule>
+</ruleset>

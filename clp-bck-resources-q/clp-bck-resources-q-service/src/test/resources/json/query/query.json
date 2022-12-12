@@ -1,0 +1,40 @@
+{
+    "filters": [
+        {
+            "attribute": "attributeId",
+            "values": [
+                "1"
+            ]
+        },
+        {
+            "attribute": "attribute",
+            "values": [
+                "value"
+            ]
+        }
+    ],
+    "restrictions": [
+        {
+            "attribute": "attributeId",
+            "type": "string",
+            "operator": "and",
+            "values": [
+                {
+                    "restriction": "eqt",
+                    "value": "1"
+                }
+            ]
+        },
+		{
+            "attribute": "attribute",
+            "type": "string",
+            "operator": "and",
+            "values": [
+                {
+                    "restriction": "eqt",
+                    "value": "value"
+                }
+            ]
+        }
+    ]
+}

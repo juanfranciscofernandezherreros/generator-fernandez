@@ -1,0 +1,10 @@
+{
+	"filters": [
+		{
+			"attribute": "ThisIsSomethingWrong",
+			"values": [
+				"20200101"
+			]
+		}
+	]
+}

@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: clp-bck-products-q
+  cloud:
+    config:
+      ## Set to true when the development begins
+      enabled: true
+      ## Set to true to fail if we cant connect to config server.
+      fail-fast: false
+      ## Change to correct label
+      label: development
+      ## Change to correct uri
+      uri: http://localhost:8888
+      username: user
+      password: password

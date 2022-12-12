@@ -1,0 +1,64 @@
+# Eclipse
+.classpath
+.project
+.settings/
+.pmd*
+.checkstyle
+
+# compiled output
+/dist
+/tmp
+/out-tsc
+# Only exists if Bazel was run
+/bazel-out
+
+# dependencies
+/node_modules
+package-lock.json
+
+# Intellij
+.idea/
+*.iml
+*.iws
+
+# IDEs and editors
+.c9/
+*.launch
+*.sublime-workspace
+.vscode
+
+# Compodoc
+/coverage
+/report
+/e2e_report
+/cucumber_report
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/*
+
+# Mac
+.DS_Store
+
+# Maven
+log/
+target/
+bin/
+.mvn/
+
+# Spring Plugin
+.springBeans
+
+# Logs
+*.log
+
+# Netbeans
+nbactions.xml
+nb-configuration.xml
+
+node_modules
+package-lock.json

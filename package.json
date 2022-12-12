@@ -1,0 +1,37 @@
+{
+  "name": "generator-fernandez",
+  "version": "0.0.1",
+  "description": "S9S yeoman generator for Angular components",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/juanfranciscofernandezherreros/generator-fernandez.git"
+  },
+  "keywords": [
+    "yeoman-generator",
+    "angular",
+    "component",
+    "javascript",
+    "builder",
+    "scaffold",
+    "generator",
+    "s9s"
+  ],
+  "author": "Kiko",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/juanfranciscofernandezherreros/generator-fernandez/issues"
+  },
+  "homepage": "https://github.com/juanfranciscofernandezherreros/generator-fernandez#readme",
+  "dependencies": {
+    "mkdirp": "^1.0.4",
+    "yeoman-generator": "^5.7.0",
+    "yosay": "^2.0.2"
+  },
+  "files": [
+    "app"
+  ]
+}

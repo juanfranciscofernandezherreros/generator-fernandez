@@ -1,0 +1,45 @@
+= Getting Started With Spring REST Docs
+
+== What is AsciiDoc?
+[quote, AsciiDoc website, http://asciidoctor.org/docs/what-is-asciidoc/]
+____
+AsciiDoc is two things:
+
+* A mature, plain-text writing format for authoring notes, articles,
+documentation, books, ebooks, web pages, slide decks, blog posts, man pages
+and more.
+* A text processor and toolchain for translating AsciiDoc documents into various
+formats (called backends), including HTML, DocBook, PDF and ePub.
+____
+
+Visit the http://asciidoc.org[AsciiDoc site] for an introduction to AsciiDoc.
+
+== Example elements
+
+=== /api/clients
+
+This is an example output for a service  running at http://localhost:8080/api/clients:
+
+==== POST
+
+.request
+include::{snippets}/result/1/test-add-client/http-request.adoc[]
+
+.response
+include::{snippets}/result/1/test-add-client/http-response.adoc[]
+
+.curl
+include::{snippets}/result/1/test-add-client/curl-request.adoc[]
+
+==== GET
+
+.request
+include::{snippets}/result/2/test-get-clients/http-request.adoc[]
+
+.response
+include::{snippets}/result/2/test-get-clients/http-response.adoc[]
+
+.curl
+include::{snippets}/result/2/test-get-clients/curl-request.adoc[]
+
+As you can see the format is very simple. In fact, you always get the same message.

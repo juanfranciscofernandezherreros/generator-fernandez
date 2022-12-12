@@ -1,0 +1,9 @@
+[
+	{
+		"_id" : {
+			"attributeId" : "1"
+		},
+		"attributeId" : "1",
+		"attribute": "value"
+	}
+]
