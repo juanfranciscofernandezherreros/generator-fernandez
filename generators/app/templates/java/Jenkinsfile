@@ -1,0 +1,8 @@
+#!/usr/bin/env groovy
+@Library('darwin-core-pipeline')
+@Library('darwin-vars-pipeline')
+@Library('darwin-build-pipeline-maven')
+import org.bme.darwin.pipeline.*
+runPipeline {
+  artifactType = "SERVICE"
+}

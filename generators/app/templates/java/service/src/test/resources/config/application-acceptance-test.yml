@@ -1,0 +1,26 @@
+##############################################################################################
+# Incluir aqui las propiedades a utilizar por Spring Boot y los componentes de la aplicación #
+##############################################################################################
+# ===================================================================
+# Spring Boot configuration.
+# ===================================================================
+spring:
+  application:
+    name: <%=projectName%>
+
+bme:
+  mongodb:
+    write-concern:
+      w: 1
+      j: false
+      wtimeout: 20
+    binary-uri: https://artifactory.six-group.net/artifactory/opensource-generic-release-local/mongodb/3.5.5/
+
+debug: false
+
+# ===================================================================
+# Application specific properties
+# ===================================================================
+use:
+ jpa: false
+ mongo: true

@@ -1,0 +1,731 @@
+---
+openapi: 3.0.2
+info:
+  title: resource JSON:API Interface
+  version: 1.0.0
+  description: |-
+    ### Introduction:
+    **RESOURCES** is the entity in BME/SIX data model that represent **--COMPLETE WITH FUNCTIONAL DESCRIPTION--**
+    ### Standards:
+    * This API implements [JSON:API standards](https://jsonapi.org/)
+    * 4XX and 5XX errors implements [Problem+JSON RFC](https://datatracker.ietf.org/doc/html/rfc7807)
+
+    ### Formats:
+    **RESOURCES** ID is using the next standards:
+     * URI Parameters: **: /resources/{id}**
+     * UUID: [RFC 4122](https://www.ietf.org/rfc/rfc4122.txt)
+     * ***Example: 95b1b467-bd69-4436-8181-96c16408c230***
+
+    The type of the object returned is **resources**
+  contact:
+    name: BME Integration Team
+    url: https://confluence.six-group.net/display/BMEAPI/BME+API+Integration+Home
+paths:
+  /resources:
+    summary: Retrieves one specific RESOURCES
+    description: Retrieves one specific **RESOURCES**
+    get:
+      tags:
+      - QUERY
+      parameters:
+      - examples:
+          Page size = 20:
+            value: 20
+        name: "page[size]"
+        description: "Pagination options for the collection search. It permits the\
+          \ next modifiers:\r\n  * page[size]\r\n  * page[number]\r\n\r\nDefault values\
+          \ defined are page[number]=1 and page[size]=20"
+        schema:
+          type: integer
+        in: query
+      - examples:
+          Page number = 3:
+            value: 3
+        name: "page[number]"
+        description: "Pagination options for the collection search. It permits the\
+          \ next modifiers:\r\n  * page[size]\r\n  * page[number]\r\n\r\nDefault values\
+          \ defined are page[number]=1 and page[size]=20"
+        schema:
+          type: integer
+        in: query
+      - examples:
+          Sort by attribute:
+            value: attribute
+          Sort by attribute, ascending:
+            value: +attribute
+          Sort by attribute, descending:
+            value: -attribute
+          Sort by attribute ascending, something descending:
+            value: "+attribute,-something"
+        name: sort
+        description: "Sort query parameter permits the sorting of the collection by\
+          \ the values of the attribute provided in the parameter:\n\n    GET /resources?sort=+attribute\n\
+          \    \nThe type of sort:\n\n * (+) Indicates ascending order. +attribute\n\
+          \ * (-) Indicates descending order. -attribute\n * If no symbol is provided,\
+          \ any default order could be returned\n\n**If sort is not provided, the\
+          \ collection is returned in a default order by ID.**\n\nThe name of the\
+          \ attribute should exists in the object. If the name does not exists, it\
+          \ returns **400 Bad Request**."
+        schema:
+          type: string
+        in: query
+      responses:
+        "200":
+          $ref: '#/components/responses/200OkDataColResponse'
+        "401":
+          $ref: '#/components/responses/401SecurityLayerErrorResponse'
+        "403":
+          $ref: '#/components/responses/403SecurityLayerErrorResponse'
+        "404":
+          $ref: '#/components/responses/404ErrorResponse'
+        "405":
+          $ref: '#/components/responses/405ErrorResponse'
+        "429":
+          $ref: '#/components/responses/429ErrorResponse'
+        "500":
+          $ref: '#/components/responses/500ErrorResponse'
+      operationId: readCollection
+      summary: Retrieves the collection of RESOURCES
+      description: Retrieves the collection of **RESOURCES**. This collection
+        is paginated.
+    post:
+      tags:
+      - COMMAND
+      responses:
+        "200":
+          $ref: '#/components/responses/200OkDataResponse'
+        "400":
+          $ref: '#/components/responses/400ErrorResponse'
+        "401":
+          $ref: '#/components/responses/401SecurityLayerErrorResponse'
+        "403":
+          $ref: '#/components/responses/403SecurityLayerErrorResponse'
+        "405":
+          $ref: '#/components/responses/405ErrorResponse'
+        "409":
+          $ref: '#/components/responses/409ErrorResponse'
+        "429":
+          $ref: '#/components/responses/429ErrorResponse'
+        "500":
+          $ref: '#/components/responses/500ErrorResponse'
+      operationId: create
+      summary: Creates new RESOURCES
+      description: Creates a **RESOURCES** object in the system providing the
+        attributes.
+  /resources/{id}:
+    summary: Retrieves one specific RESOURCES
+    description: Retrieves one specific **RESOURCES**
+    get:
+      tags:
+      - QUERY
+      responses:
+        "200":
+          $ref: '#/components/responses/200OkDataResponse'
+        "401":
+          $ref: '#/components/responses/401SecurityLayerErrorResponse'
+        "403":
+          $ref: '#/components/responses/403SecurityLayerErrorResponse'
+        "404":
+          $ref: '#/components/responses/404ErrorResponse'
+        "405":
+          $ref: '#/components/responses/405ErrorResponse'
+        "429":
+          $ref: '#/components/responses/429ErrorResponse'
+        "500":
+          $ref: '#/components/responses/500ErrorResponse'
+      operationId: read
+      summary: Retrieves one specifict RESOURCES
+      description: Retrieves one specifict **RESOURCES**
+    put:
+      tags:
+      - COMMAND
+      responses:
+        "200":
+          $ref: '#/components/responses/200OkDataResponse'
+        "400":
+          $ref: '#/components/responses/400ErrorResponse'
+        "401":
+          $ref: '#/components/responses/401SecurityLayerErrorResponse'
+        "403":
+          $ref: '#/components/responses/403SecurityLayerErrorResponse'
+        "404":
+          $ref: '#/components/responses/404ErrorResponse'
+        "405":
+          $ref: '#/components/responses/405ErrorResponse'
+        "429":
+          $ref: '#/components/responses/429ErrorResponse'
+        "500":
+          $ref: '#/components/responses/500ErrorResponse'
+      operationId: modify
+      summary: Modify the object RESOURCES
+      description: Modify the **RESOURCES** object in the collection
+    delete:
+      tags:
+      - COMMAND
+      responses:
+        "204":
+          $ref: '#/components/responses/204OkNoContent'
+        "401":
+          $ref: '#/components/responses/401SecurityLayerErrorResponse'
+        "403":
+          $ref: '#/components/responses/403SecurityLayerErrorResponse'
+        "404":
+          $ref: '#/components/responses/404ErrorResponse'
+        "405":
+          $ref: '#/components/responses/405ErrorResponse'
+        "429":
+          $ref: '#/components/responses/429ErrorResponse'
+        "500":
+          $ref: '#/components/responses/500ErrorResponse'
+      operationId: delete
+      summary: Delete object RESOURCES
+      description: Remove one **RESOURCES** object from the collection
+    parameters:
+    - examples:
+        UUID:
+          value: 95b1b467-bd69-4436-8181-96c16408c230
+      name: id
+      description: Resource ID in **UUID** format
+      schema:
+        type: string
+      in: path
+      required: true
+  /resources/search:
+    summary: Advanced Search for RESOURCES
+    description: Search endpoint that represents the avanced search for **RESOURCES**
+      collection. It returns the list of parameters that matches the query criteria.
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QueryType'
+            examples:
+              QuerySearch:
+                value:
+                  filters:
+                  - attribute: attributeId
+                    values:
+                    - attributeValue
+                  restrictions:
+                  - attribute: numericAttributeId
+                    type: decimal
+                    operator: and
+                    values:
+                    - restriction: lte
+                      value: "2.0"
+                    - restriction: gte
+                      value: "1.0"
+      tags:
+      - ADVANCED-QUERY
+      responses:
+        "200":
+          $ref: '#/components/responses/200OkDataColResponse'
+        "400":
+          $ref: '#/components/responses/400ErrorResponse'
+        "401":
+          $ref: '#/components/responses/401SecurityLayerErrorResponse'
+        "403":
+          $ref: '#/components/responses/403SecurityLayerErrorResponse'
+        "405":
+          $ref: '#/components/responses/405ErrorResponse'
+        "429":
+          $ref: '#/components/responses/429ErrorResponse'
+        "500":
+          $ref: '#/components/responses/500ErrorResponse'
+      operationId: search
+      summary: Advanced search for RESOURCES
+      description: "**SEARCH** is an experience/resource type API designed to provide\
+        \ support to the search of **RESOURCES** collection. This is part of\
+        \ the advanced query search.\n\nThe operation uses the next query objects:\n\
+        \  * Filters: every filter applied **MUST** be present with the provided value\
+        \ set.\n  * Restrictions: every object returned in the collection **MUST**\
+        \ be validated on the restriction. \n\nEvery restriction and filter is applied\
+        \ with **AND** operation. As example:\n\n    POST resources\n    {\n\
+        \        \"filters\": [\n            {\n                \"attribute\": \"\
+        attributeId\",\n                \"values\": [\n                    \"attributeValue\"\
+        \n                ]\n            }\n            \n        ], \n        \"\
+        restrictions\": [\n            {\n              \"attribute\": \"numericAttributeId\"\
+        ,\n              \"type\": \"decimal\",\n              \"operator\": \"and\"\
+        ,\n              \"values\": [\n                  {\n                    \"\
+        restriction\": \"lte\",\n                    \"value\": \"2.0\"\n        \
+        \        },\n                {\n                    \"restriction\": \"gte\"\
+        ,\n                    \"value\": \"1.0\"\n                }\n           \
+        \ ]\n          }\n        ]\n    }\n\nThis is equivalent to: **WHERE** attributeId\
+        \ **IN** (\"attributeValue\") **AND** numericAttributeId **>** 1.0 **AND**\
+        \ numericAttributeId **<** 2.0\n\nResults could be ordered by any field."
+    parameters:
+    - examples:
+        Page size = 20:
+          value: 20
+      name: "page[size]"
+      description: "Pagination options for the collection search. It permits the next\
+        \ modifiers:\r\n  * page[size]\r\n  * page[number]\r\n\r\nDefault values defined\
+        \ are page[number]=1 and page[size]=20"
+      schema:
+        type: integer
+      in: query
+    - examples:
+        Page number = 3:
+          value: 3
+      name: "page[number]"
+      description: "Pagination options for the collection search. It permits the next\
+        \ modifiers:\r\n  * page[size]\r\n  * page[number]\r\n\r\nDefault values defined\
+        \ are page[number]=1 and page[size]=20"
+      schema:
+        type: integer
+      in: query
+    - examples:
+        Sort by attribute:
+          value: attribute
+        Sort by attribute, ascending:
+          value: +attribute
+        Sort by attribute, descending:
+          value: -attribute
+        Sort by attribute ascending, something descending:
+          value: "+attribute,-something"
+      name: sort
+      description: "Sort query parameter permits the sorting of the collection by\
+        \ the values of the attribute provided in the parameter:\n\n    GET resources?sort=+attribute\n\
+        \    \nThe type of sort:\n\n * (+) Indicates ascending order. +attribute\n\
+        \ * (-) Indicates descending order. -attribute\n * If no symbol is provided,\
+        \ any default order could be returned\n\n**If sort is not provided, the collection\
+        \ is returned in a default order by ID.**\n\nThe name of the attribute should\
+        \ exists in the object. If the name does not exists, it returns **400 Bad\
+        \ Request**."
+      schema:
+        type: string
+      in: query
+components:
+  schemas:
+    QueryType:
+      type: object
+      properties:
+        filters:
+          description: Filters restricting the search. All of the values in the Array
+            represent AND operation.
+          type: array
+          items:
+            $ref: '#/components/schemas/FilterType'
+          example: ""
+        restrictions:
+          description: List of restrictions applied to the collection
+          type: array
+          items:
+            $ref: '#/components/schemas/RestrictionRootType'
+      example:
+        filters:
+        - attribute: contractId
+          values:
+          - IBE20
+          - CAF10
+        - attribute: sessionDate
+          values:
+          - "20200101"
+          - "20200102"
+        restrictions:
+        - attribute: high
+          type: decimal
+          operator: and
+          values:
+          - restriction: lt
+            value: "10.7"
+          - restriction: gt
+            value: "10.7"
+    FilterType:
+      type: object
+      properties:
+        attribute:
+          description: "Name of the attribute to be restricted, filtered or searched"
+          type: string
+          example: sessionDate
+        values:
+          description: Value of the filter or restriction done.
+          type: array
+          items:
+            type: string
+          example: "[20200101, 20200102]"
+    RestrictionRootType:
+      required:
+      - operator
+      - restrictions
+      type: object
+      properties:
+        attribute:
+          description: "Name of the attribute to be restricted, filtered or searched"
+          type: string
+          example: high
+        type:
+          description: Type of the value to be searched. This is used to validate
+            the transformation done in the backend once the list is received
+          enum:
+          - integer
+          - decimal
+          - string
+          - boolean
+          type: string
+          example: decimal
+        operator:
+          description: Operator applied in the value comparision.
+          enum:
+          - and
+          - or
+          type: string
+          example: and
+        values:
+          description: List of restrictions to be applied with the operator in the
+            attribute
+          type: array
+          items:
+            $ref: '#/components/schemas/RestrictionType'
+    ProblemType:
+      required:
+      - errors
+      type: object
+      properties:
+        errors:
+          description: List of more detailed error messages
+          minItems: 1
+          type: array
+          items:
+            $ref: '#/components/schemas/ProblemDetailType'
+    OKNoContent:
+      type: object
+    NoContentType:
+      type: object
+    RestrictionType:
+      type: object
+      properties:
+        restriction:
+          description: "Type of restriction to be set in the search, if applies"
+          enum:
+          - lt
+          - lte
+          - gt
+          - gte
+          - eqt
+          - neqt
+          - like
+          type: string
+          example: lt
+        value:
+          description: Value of the filter or restriction done.
+          type: string
+          example: "2.3"
+    ProblemDetailType:
+      required:
+      - status
+      - title
+      type: object
+      properties:
+        type:
+          description: "A URI reference [RFC3986] that uniquely identifies the problem\
+            \  type only in the context of the provided API. "
+          default: resources
+          type: string
+        title:
+          description: "A short summary of the problem type. Written in English and\
+            \  readable for engineers, usually not suited for non technical  stakeholders\
+            \ and not localized."
+          type: string
+        status:
+          format: int32
+          description: "The HTTP status code ([RFC7231], Section 6) generated by the\
+            \  origin server for this occurrence of the problem."
+          maximum: 599
+          minimum: 100
+          type: integer
+        detail:
+          description: A human readable explanation specific to this occurrence  of
+            the problem.
+          type: string
+        instance:
+          description: An absolute URI that identifies the specific occurrence of
+            the problem. It may or may not yield further information if dereferenced.
+          type: string
+        invalidParams:
+          description: List of the invalid params that caused the problem.
+          type: array
+          items:
+            $ref: '#/components/schemas/ProblemParamType'
+    ProblemParamType:
+      type: object
+      properties:
+        name:
+          description: Name of the parameter in the error caused
+          type: string
+        reason:
+          description: Concise description of the error caused
+          type: string
+      example:
+        name: age
+        reason: must be a positive integer
+    UUIDType:
+      format: string
+      description: "UUID type implementing the [RFC 4122](https://www.ietf.org/rfc/rfc4122.txt)."
+      pattern: "^[0-9a-fA-F]{8}\\b-[0-9a-fA-F]{4}\\b-[0-9a-fA-F]{4}\\b-[0-9a-fA-F]{4}\\\
+        b-[0-9a-fA-F]{12}$"
+      type: string
+      example: 95b1b467-bd69-4436-8181-96c16408c230
+    BasicResourceType:
+      required:
+      - id
+      - type
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/UUIDType'
+          example: 95b1b467-bd69-4436-8181-96c16408c230
+        type:
+          description: Type of the resource attributes being represented
+          maxLength: 255
+          minLength: 1
+          type: string
+          example: resources
+    LinksPaginationType:
+      required:
+      - first
+      - last
+      type: object
+      properties:
+        first:
+          description: First position of the collection
+          type: string
+          example: "https://api.domain.com/resources?page[number]=1"
+        last:
+          description: Last page of the collection
+          type: string
+          example: "https://api.domain.com/resources?page[number]=50"
+        prev:
+          description: "Navigates to the previous page on the list provided. If the\
+            \ page is the first one, prev should be null or not be present"
+          type: string
+          example: "https://api.domain.com/resources?page[number]=1"
+        next:
+          description: "Navigates to the next page on the list provided. If the page\
+            \ is the last one, prev should be null or not be present"
+          type: string
+          example: "https://api.domain.com/resources?page[number]=3"
+    MetaType:
+      type: object
+      properties:
+        totalPages:
+          description: Total pages of the query
+          type: integer
+          example: "13"
+        page:
+          description: Current Page
+          type: integer
+          example: "1"
+        total:
+          description: Count of the elements returned in the query (or collection)
+          type: integer
+          example: "250"
+    ResourceType:
+      description: Data structure for all operations.
+      type: object
+      allOf:
+      - type: object
+        properties:
+          attributes:
+            $ref: '#/components/schemas/AttributesIdType'
+      - $ref: '#/components/schemas/BasicResourceType'
+    DataColResponseType:
+      description: Collection in JSON:API format. Collection is paginated
+      required:
+      - data
+      - meta
+      - links
+      type: object
+      properties:
+        links:
+          $ref: '#/components/schemas/LinksPaginationType'
+        data:
+          description: "List of **MESSAGES** present in the collection, resulting\
+            \ on the query request."
+          type: array
+          items:
+            $ref: '#/components/schemas/ResourceType'
+          readOnly: true
+        meta:
+          $ref: '#/components/schemas/MetaType'
+    DataResponseType:
+      description: Object in JSON:API format.
+      required:
+      - data
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ResourceType'
+    AttributesIdType:
+      description: List of attributes of the JSON:API Object
+      type: object
+      allOf:
+      - type: object
+      - $ref: '#/components/schemas/AttributesType'
+      - $ref: '#/components/schemas/DataIdType'
+    AttributesType:
+      description: ""
+      type: object
+      properties:
+        attribute:
+          description: Attribute Information
+          type: string
+          example: Information
+    DataIdType:
+      description: List of attributes of the JSON:API Object
+      type: object
+      properties:
+        attributeId:
+          description: This is part of the PK in the object
+          type: string
+          example: Id
+  responses:
+    "400ErrorResponse":
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ProblemType'
+          examples:
+            "400 Bad Attributes":
+              value:
+                errors:
+                - type: resources
+                  title: Your request parameters didn't validate.
+                  status: 400
+                  invalidParams:
+                  - name: age
+                    reason: must be a positive integer
+                  - name: color
+                    reason: "must be 'green', 'red' or 'blue'"
+      description: Bad Request
+    "401SecurityLayerErrorResponse":
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ProblemType'
+          examples:
+            "401 Unathorized":
+              value:
+                errors:
+                - type: resources
+                  title: Unauthorized
+                  status: 401
+                  detail: "The resource is protected with credentials, they must be\
+                    \ provided"
+                  instance: 95b1b467-bd69-4436-8181-96c16408c230
+      description: Unauthorized
+    "403SecurityLayerErrorResponse":
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ProblemType'
+          examples:
+            "403 Forbidden":
+              value:
+                errors:
+                - type: resources
+                  title: Forbidden
+                  status: 403
+                  detail: Resource requested require extra rights not assigned to
+                    the scope provided
+                  instance: 95b1b467-bd69-4436-8181-96c16408c230
+      description: Forbidden
+    "404ErrorResponse":
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ProblemType'
+          examples:
+            "404 Not Found":
+              value:
+                errors:
+                - type: resources
+                  title: Not Found
+                  status: 404
+                  detail: The resource can´t be found in the system
+                  instance: 95b1b467-bd69-4436-8181-96c16408c230
+      description: Resource not found
+    "405ErrorResponse":
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ProblemType'
+          examples:
+            "405 Method Not Allowed":
+              value:
+                errors:
+                - type: resources
+                  title: Method not allowed
+                  status: 405
+                  detail: The target resource doesn't support this method
+                  instance: 95b1b467-bd69-4436-8181-96c16408c230
+      description: Method Not Allowed
+    "409ErrorResponse":
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ProblemType'
+          examples:
+            "405 Method No Allowed":
+              value:
+                errors:
+                - type: resources
+                  title: Conflict
+                  status: 409
+                  detail: The resource already exists
+                  instance: 95b1b467-bd69-4436-8181-96c16408c230
+      description: Method Not Allowed
+    "429ErrorResponse":
+      headers:
+        X-Rate-Limit-Retry-After-Seconds:
+          schema:
+            type: integer
+          description: Number in seconds to wait
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ProblemType'
+          examples:
+            Sample:
+              value:
+                errors:
+                - type: resources
+                  title: Too many requests
+                  status: 429
+                  detail: Too many requests
+                  instance: 95b1b467-bd69-4436-8181-96c16408c230
+      description: Too Many Requests
+    "500ErrorResponse":
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ProblemType'
+          examples:
+            "500 Internal Server Error":
+              value:
+                errors:
+                - type: resources
+                  title: Internal server error
+                  status: 500
+                  detail: This is a functional description of the error caused
+                  instance: 95b1b467-bd69-4436-8181-96c16408c230
+      description: Internal Server Error
+    "200OkDataResponse":
+      content:
+        application/vnd.api+json:
+          schema:
+            $ref: '#/components/schemas/DataResponseType'
+      description: Ok
+    "204OkNoContent":
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/OKNoContent'
+      description: Ok
+    "200OkDataColResponse":
+      content:
+        application/vnd.api+json:
+          schema:
+            $ref: '#/components/schemas/DataColResponseType'
+      description: Ok
