@@ -25,6 +25,14 @@ module.exports = class extends Generator {
           "What is the standard you want to use? (use SIX or DARWIN. Note: is uppercase)",
         default: "SIX"
       },
+	  {
+        type: "input",
+        name: "projectName",
+        message:
+          "What is the name of the project you want to build? (clp-bck-[PROJECT_NAME]-q)",
+		validate: input => /^([a-z]{1}[a-z0-9-]*(\.[a-z]{1}[0-9a-z]*)*)$/.test(input) ? true : 'Invalid project name',
+        default: "resources"
+      },
       {
         type: "input",
         name: "resource",
@@ -59,7 +67,15 @@ module.exports = class extends Generator {
         message:
           "What is the title of your API? (example: Business-Participants, will produce Business-Participants JSON:API Interface",
         default: "resource"
+      },	  
+	  {
+        type: "input",
+        name: "mongoCollection",
+        message:
+          "What is the collection in Mongo DB where we will read? (format: DCLEAR.MUR.[KS|DAT|CALC].[COLLECTION]. Example: DCLEAR.MUR.KS.SOMETHING",
+        default: "DCLEAR.MUR.KS.SOMETHING"
       }
+
     ];
 
     return this.prompt(prompts).then(props => {
